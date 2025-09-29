@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>RR Charitable Trust — Services & Membership</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>RR Charitable Trust — Mobile-ready (Improved Buttons & Membership)</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
 <style>
   :root{
     --bg:#ffffff;
@@ -14,344 +12,388 @@
     --accent:#2EA247;
     --accent-2:#0A84FF;
     --gold:#b8860b;
+    --gold-dark:#9a6e08;
     --silver:#9ea7ad;
-    --card-radius:12px;
+    --silver-dark:#7f8a90;
+    --card-radius:14px;
     --gap:12px;
-    --container:1160px;
-    --soft-shadow: 0 8px 22px rgba(16,24,40,0.06);
-    --tiny-shadow: 0 4px 12px rgba(16,24,40,0.05);
-    --cta-grad: linear-gradient(90deg,#ff7a59,#ff4d92);
+    --nav-height:78px;
+    --nav-safe: env(safe-area-inset-bottom, 12px);
+    --elev: 0 12px 34px rgba(12,18,22,0.10);
+    --soft: 0 6px 18px rgba(12,18,22,0.06);
+    --glass: rgba(255,255,255,0.72);
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0;
     font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
-    background:var(--bg);
-    color:#0f1720;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.4;
-    font-size:15px;
+    background:var(--bg); color:#0f1720; -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale; line-height:1.35; font-size:15px;
+    padding-bottom: calc(var(--nav-height) + var(--nav-safe));
   }
-  .wrap{max-width:var(--container);margin:18px auto;padding:18px}
+  .wrap{max-width:980px;margin:10px auto;padding:12px;}
 
-  /* icon defaults */
+  /* SVG icons default */
   svg.icon { width:20px; height:20px; display:inline-block; vertical-align:middle; }
-  .svc-icon svg { width:44px; height:44px; }
-  .chip .ico svg { width:36px; height:36px; }
-  .badge svg { width:26px; height:26px; }
 
-  /* Header (compact) */
-  header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #eef0f2;position:sticky;top:0;background:var(--bg);z-index:80;}
-  .brand{display:flex;gap:12px;align-items:center}
-  .brand img{height:48px;width:48px;border-radius:8px;object-fit:contain}
-  .brand .title{font-weight:700;font-size:17px}
+  /* Header */
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 4px;border-bottom:1px solid #eef0f2;position:sticky;top:0;background:var(--bg);z-index:50;}
+  .brand{display:flex;gap:10px;align-items:center}
+  .brand img{height:44px;width:44px;border-radius:8px;object-fit:contain}
+  .brand .title{font-weight:700;font-size:16px}
   .brand .sub{font-size:12px;color:var(--muted)}
-  .header-actions{display:flex;gap:8px;align-items:center}
-  .btn{padding:8px 12px;border-radius:10px;border:1px solid #e6e9ee;background:#fff;font-weight:600;cursor:pointer;box-shadow:none;transition:all .15s ease}
-  .btn:hover{transform:translateY(-2px);box-shadow:var(--tiny-shadow)}
-  .btn.primary{background:var(--accent);color:#fff;border:0}
-  .small{font-size:13px;color:var(--muted)}
-
-  /* hero */
-  .hero{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;padding:12px 0}
-  .left{flex:1;min-width:300px}
-  .right-hero{width:340px;min-width:240px;display:flex;flex-direction:column;gap:12px}
-
-  .search-wrap{background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:14px;border:1px solid #f1f3f5;box-shadow:var(--soft-shadow);display:flex;flex-direction:column;gap:10px}
-  .search-row{display:flex;gap:10px;align-items:center}
-  .search-field{display:flex;align-items:center;gap:10px;background:#fff;padding:10px 12px;border-radius:999px;border:1px solid #eef2f6;flex:1;transition:box-shadow .15s ease, transform .08s ease;}
-  .search-field:focus-within{box-shadow:0 8px 28px rgba(10,132,255,0.07);transform:translateY(-2px)}
-  .search-field input{border:0;outline:0;font-size:15px;width:100%}
-  .search-btn{padding:10px 14px;border-radius:999px;border:0;background:linear-gradient(90deg,var(--accent-2),#0e6be6);color:#fff;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 20px rgba(10,132,255,0.12);transition:transform .12s}
-  .search-btn:active{transform:scale(.98)}
-  .search-btn .icon{width:18px;height:18px;display:inline-block;transform-origin:center;transition:transform .25s ease}
-
-  .suggestions{position:relative}
-  .suggest-list{position:absolute;left:0;right:0;top:100%;margin-top:8px;background:#fff;border-radius:10px;border:1px solid #eef2f6;box-shadow:0 10px 30px rgba(12,18,22,0.06);max-height:260px;overflow:auto;z-index:60;}
-  .suggest-item{padding:10px 12px;display:flex;gap:10px;align-items:center;cursor:pointer}
-  .suggest-item:hover{background:#f7fbff}
-
-  .chips{display:flex;gap:10px;overflow:auto;padding-bottom:6px;margin-top:6px}
-  .chip{min-width:110px;padding:8px;border-radius:10px;border:1px solid #f0f2f4;background:#fff;display:flex;gap:10px;align-items:center;cursor:pointer}
-  .chip .ico{width:40px;height:40;border-radius:8px;background:#f7fafc;display:grid;place-items:center;font-weight:700}
+  .login-btn{width:44px;height:44px;border-radius:999px;display:grid;place-items:center;border:1px solid #eef2f6;background:#fff;box-shadow:var(--soft);cursor:pointer}
+  .login-btn svg{width:20px;height:20px}
 
   /* layout */
-  .grid{display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:14px}
-  @media(max-width:980px){.grid{grid-template-columns:1fr}}
+  .hero{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;padding:10px 0}
+  .left{flex:1;min-width:280px}
+  .right-hero{width:340px;min-width:240px;display:flex;flex-direction:column;gap:12px}
 
-  .upload{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:999px;background:#fff;border:1px solid #eef2f6;box-shadow:var(--tiny-shadow)}
-  .upload .left{display:flex;gap:10px;align-items:center}
-  .upload .title{font-weight:700}
-  .upload .sub{font-size:13px;color:var(--muted)}
+  @media (max-width:720px){
+    .right-hero{width:100%!important;min-width:0!important}
+    .left{width:100%}
+    .wrap{padding-left:12px;padding-right:12px}
+  }
 
-  .popular{margin-top:8px}
-  .popular-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .svc-card{background:#fff;padding:12px;border-radius:12px;border:1px solid #f2f4f6;display:flex;gap:12px;align-items:center;cursor:pointer;transition:transform .12s, box-shadow .12s}
+  /* shared card */
+  .card{background:#fff;border-radius:var(--card-radius);border:1px solid #eef2f6;padding:12px;box-shadow:var(--soft)}
+  .card.full {width:100%}
+
+  /* button base (restored richer style) */
+  .btn {
+    display:inline-flex;align-items:center;gap:10px;
+    padding:10px 14px;border-radius:12px;border:1px solid rgba(15,20,24,0.06);
+    font-weight:700;background:#fff;color:#0f1720;cursor:pointer;
+    transition:transform .12s, box-shadow .12s, opacity .12s;
+    box-shadow:0 6px 18px rgba(12,18,22,0.06);
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:#fff;border:1px solid #eef2f6;color:var(--muted)}
+  .btn.primary{
+    background:linear-gradient(90deg,var(--accent-2),#1f8f3a);
+    color:#fff;border:0;box-shadow:0 12px 30px rgba(10,132,255,0.12);
+  }
+  /* large pill / CTA (used for Book Appointment previously) */
+  .btn.cta{
+    padding:12px 16px;border-radius:16px;font-size:15px;letter-spacing:.2px;
+    box-shadow:0 18px 40px rgba(12,18,22,0.08);
+  }
+  /* subtle micro-ghost for small actions */
+  .btn.mini{padding:8px 10px;border-radius:10px;font-weight:700}
+
+  /* Search */
+  .search-wrap{display:flex;flex-direction:column;gap:10px}
+  .search-field{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:1px solid #eef2f6;background:#fff}
+  .search-field input{border:0;outline:0;font-size:15px;width:100%}
+  .search-field .btn{padding:8px 10px;border-radius:999px}
+
+  /* upload/book */
+  .upload{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .upload .left{display:flex;gap:12px;align-items:center}
+  .upload .book-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:16px;border:0;background:linear-gradient(90deg,var(--accent-2),#1f8f3a);color:#fff;font-weight:800;box-shadow:var(--elev)}
+  @media (max-width:600px){
+    .upload{flex-direction:column;align-items:stretch}
+    .upload .book-btn{width:100%;justify-content:center}
+  }
+
+  /* services grid */
+  .popular-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  @media (max-width:900px){ .popular-grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:520px){ .popular-grid{grid-template-columns:1fr} }
+  .svc-card{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:#fff;border:1px solid #f2f4f6;cursor:pointer;transition:transform .12s, box-shadow .12s}
   .svc-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,18,22,0.06)}
-  .svc-icon{width:52px;height:52px;border-radius:10px;background:linear-gradient(180deg,var(--accent),#1f8f3a);display:grid;place-items:center;color:#fff;font-weight:800}
-  .svc-title{font-weight:700}
-  .svc-sub{font-size:13px;color:var(--muted)}
-  @media(max-width:900px){.popular-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.popular-grid{grid-template-columns:1fr}}
+  .svc-icon{width:46px;height:46px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:800;background:linear-gradient(180deg,var(--accent),#1f8f3a)}
 
-  .members{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-  .member-card{border-radius:12px;padding:14px;border:1px solid rgba(10,10,10,0.03);background:linear-gradient(180deg,#fff,#fff);box-shadow:var(--tiny-shadow)}
-  .member-head{display:flex;align-items:center;gap:12px}
-  .badge{width:44px;height:44px;border-radius:8px;display:grid;place-items:center;font-weight:800}
-  .badge.gold{background:linear-gradient(180deg,#fff0c6,#ffd867);color:#5a3f00}
-  .badge.silver{background:linear-gradient(180deg,#edf0f2,#d6dbe0);color:#2b2b2b}
-  .benefits{margin-top:10px;display:grid;gap:8px}
-  .benefit{display:flex;gap:10px;align-items:flex-start}
-  .dot{width:10px;height:10px;border-radius:2px;margin-top:6px}
-  .dot.gold{background:var(--gold)}
-  .dot.silver{background:var(--silver)}
-  .member-cta{display:flex;align-items:center;gap:10px;margin-top:12px}
-  .member-btn{padding:9px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
-  .member-btn.gold{background:var(--gold);color:#fff}
-  .member-btn.silver{background:#8d99a3;color:#fff}
+  /* Membership cards — more beautiful version */
+  .members{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  @media (max-width:600px){ .members{grid-template-columns:1fr} }
 
-  .all-panel{margin-top:14px;border-radius:12px;padding:10px;background:#fff;border:1px solid #eef2f6;box-shadow:var(--tiny-shadow)}
-  .all-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-height:0;overflow:hidden;transition:max-height .36s ease}
-  .mini-item{padding:10px;border-radius:8px;border:1px solid #f3f4f6;background:#fff;display:flex;gap:8px;align-items:center;font-size:14px}
-  .all-grid.expanded{max-height:600px}
-  @media(max-width:900px){.all-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.all-grid{grid-template-columns:1fr}}
+  .member-card{
+    position:relative;
+    overflow:hidden;
+    padding:14px;border-radius:14px;border:0;color:#0f1720;
+    display:flex;flex-direction:column;gap:10px;box-shadow:0 18px 40px rgba(12,18,22,0.06);
+  }
 
-  .side-card{background:#fff;padding:12px;border-radius:12px;border:1px solid #eef2f6;box-shadow:var(--tiny-shadow);display:flex;flex-direction:column;gap:12px}
-  .centers-search{display:flex;gap:8px;align-items:center;margin-bottom:6px}
-  .centers-search input{flex:1;padding:10px;border-radius:10px;border:1px solid #eef2f6}
-  .center-row{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:8px;border-bottom:1px solid #fafafa}
-  .center-row:last-child{border-bottom:0}
-  .centers-list{max-height:160px;overflow:auto}
+  /* silver */
+  .member-card.silver{
+    background:linear-gradient(180deg,#f8fbfd,#eef5f8);
+    border:1px solid rgba(158,167,173,0.14);
+  }
+  .member-card.silver .badge-wrap{
+    display:flex;align-items:center;gap:12px;
+  }
+  .member-badge.silver{
+    width:56px;height:56px;border-radius:12px;display:grid;place-items:center;
+    background:linear-gradient(180deg,#e9eef2,#dbe2e7);color:#283238;font-weight:900;font-size:18px;
+    box-shadow:inset 0 -6px 12px rgba(255,255,255,0.35);
+  }
+  .member-card.silver .price {
+    color:var(--silver-dark); font-weight:800; font-size:14px;
+  }
 
-  /* Activity card */
-  .activity-card{padding:12px;border-radius:12px;border:1px solid #f1f3f5;background:linear-gradient(180deg,#fff,#fff);box-shadow:var(--tiny-shadow);display:flex;flex-direction:column;gap:10px}
-  .activity-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
-  .activity-title{display:flex;align-items:center;gap:10px}
-  .activity-stats{display:flex;gap:10px;align-items:center}
-  .stat{background:#f7fafc;padding:8px;border-radius:8px;min-width:68px;text-align:center}
-  .stat strong{display:block;font-weight:800}
-  .activity-gallery{display:flex;gap:8px;align-items:center}
-  .thumb{width:64px;height:44px;border-radius:8px;background:#f3f5f7;display:grid;place-items:center;font-weight:700;color:#9aa3ad}
-  .activity-cta{display:flex;align-items:center;gap:8px;justify-content:space-between}
-  .see-btn{padding:10px 12px;border-radius:10px;border:0;cursor:pointer;font-weight:800;color:#fff;background:var(--cta-grad);box-shadow:0 10px 30px rgba(255,77,146,0.12);transition:transform .12s ease}
-  .see-btn:hover{transform:translateY(-4px)}
-  .see-btn .pulse{display:inline-block;margin-left:8px;width:10px;height:10px;border-radius:50%;background:#fff;opacity:0.9;box-shadow:0 6px 18px rgba(255,77,146,0.28);animation:pulse 1.6s infinite}
-  @keyframes pulse{0%{transform:scale(.9);opacity:.9}50%{transform:scale(1.15);opacity:1}100%{transform:scale(.9);opacity:.9}}
+  /* gold */
+  .member-card.gold{
+    background:linear-gradient(180deg,#fff8ea,#fff1d6);
+    border:1px solid rgba(184,134,11,0.12);
+  }
+  .member-badge.gold{
+    width:56px;height:56px;border-radius:12px;display:grid;place-items:center;
+    background:linear-gradient(180deg,#fff1c4,#ffd867);color:#6b4300;font-weight:900;font-size:18px;
+    box-shadow:inset 0 -6px 12px rgba(255,255,255,0.35);
+  }
+  .member-card.gold .price { color:var(--gold-dark); font-weight:800; font-size:14px; }
 
-  /* Modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(8,12,20,0.45);display:none;align-items:center;justify-content:center;z-index:220}
-  .modal{width:min(920px,94%);max-height:86vh;overflow:auto;border-radius:12px;background:#fff;padding:16px;box-shadow:0 30px 80px rgba(8,12,20,0.45)}
-  .modal-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
-  .modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .act-card{border-radius:10px;border:1px solid #f3f4f6;overflow:hidden;background:#fff}
-  .act-thumb{height:120px;background:#f3f5f7;display:grid;place-items:center;font-weight:800}
-  .act-body{padding:10px}
-  .close-btn{background:transparent;border:0;font-weight:800;cursor:pointer}
+  .member-features{display:grid;gap:6px;margin-top:6px}
+  .member-feat{display:flex;gap:10px;align-items:flex-start}
+  .feat-dot{width:10px;height:10px;border-radius:3px;margin-top:6px}
+  .feat-dot.gold{background:var(--gold)}
+  .feat-dot.silver{background:var(--silver)}
 
-  footer{margin-top:18px;padding:20px 0;border-top:1px solid #eef0f2}
-  .f-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;max-width:var(--container);margin:0 auto}
-  .f-brand{display:flex;gap:10px;align-items:center}
-  .f-brand img{height:40px;width:40px;border-radius:8px;object-fit:contain}
-  .f-col a{color:var(--muted);text-decoration:none;font-size:14px}
-  .f-bottom{max-width:var(--container);margin:12px auto 0;padding:0 12px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between}
-  .muted{color:var(--muted)}
-  .hide{display:none}
+  .member-footer{display:flex;align-items:center;gap:10px;margin-top:8px;justify-content:space-between}
+  .member-cta{display:flex;gap:8px;align-items:center}
+  .member-chip{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.8);font-weight:700;border:1px solid rgba(255,255,255,0.4)}
+
+  /* right column full width on mobile */
+  .right-hero .card{width:100%}
+
+  /* activity */
+  .activity-gallery{display:flex;gap:8px;align-items:center;margin-top:8px}
+  .thumb{width:64px;height:44px;border-radius:8px;background:#f3f5f7;display:grid;place-items:center}
+
+  /* modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(8,12,20,0.45);display:none;align-items:center;justify-content:center;z-index:300}
+  .modal{width:min(920px,94%);max-height:86vh;overflow:auto;border-radius:12px;background:#fff;padding:14px}
+
+  /* bottom navigation - more native feel */
+  .bottom-nav{
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:calc(12px + env(safe-area-inset-bottom, 8px));
+    height:var(--nav-height);
+    background:var(--glass);
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    padding:10px 8px;
+    box-shadow: 0 18px 48px rgba(12,18,22,0.12);
+    z-index:400;
+    backdrop-filter: blur(6px);
+    border:1px solid rgba(255,255,255,0.5);
+  }
+  .nav-item{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--muted);background:transparent;border:0;padding:8px 6px;border-radius:12px;min-width:54px}
+  .nav-item .nav-icon{width:28px;height:28px;display:grid;place-items:center}
+  .nav-item:active{transform:translateY(2px)}
+  .nav-item.active{color:var(--accent-2);font-weight:700}
+  .nav-item .pill{height:4px;width:28px;border-radius:99px;background:transparent;margin-top:4px;opacity:0}
+  .nav-item.active .pill{background:linear-gradient(90deg,var(--accent-2),#6c8bff);opacity:1;box-shadow:0 8px 18px rgba(12,18,22,0.06)}
+  @media (min-width:981px){ .bottom-nav{display:none} }
+
+  /* micro styles */
+  .muted{color:var(--muted);font-size:13px}
+  .kicker{font-size:12px;color:var(--muted);font-weight:600}
+  .small{font-size:13px}
 </style>
 </head>
 <body>
 
-<!-- SVG symbol set -->
+<!-- SVG sprite -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <symbol id="icon-hospital" viewBox="0 0 24 24">
-    <rect x="3" y="4" width="18" height="16" rx="2" ry="2" stroke="currentColor" stroke-width="1.4" fill="none"/>
-    <path d="M8 11h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-  <symbol id="icon-stethoscope" viewBox="0 0 24 24">
-    <path d="M16 3v4a3 3 0 1 1-6 0V3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <path d="M10 14a6 6 0 1 1 4 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
-  </symbol>
-  <symbol id="icon-lab" viewBox="0 0 24 24">
-    <path d="M10 2h4M8 6h8l-2 6v6a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2v-6L8 6z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  </symbol>
-  <symbol id="icon-pharmacy" viewBox="0 0 24 24">
-    <rect x="3.5" y="6" width="17" height="6" rx="3" ry="3" stroke="currentColor" stroke-width="1.3" fill="none"/>
-    <path d="M3.5 9h17" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-    <path d="M7 12v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-  </symbol>
-  <symbol id="icon-syringe" viewBox="0 0 24 24"><path d="M21 3l-6 6M14 10l-9 9-2-2 9-9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
-  <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
-  <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2.18 2 19.7 19.7 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.7 19.7 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72c.12 1.05.37 2.08.74 3.05a2 2 0 0 1-.45 2.11L9.91 11.09a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.11-.45c.97.37 2 .62 3.05.74A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
+  <symbol id="icon-home" viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V11.5z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  <symbol id="icon-location" viewBox="0 0 24 24"><path d="M12 21s8-5.6 8-11a8 8 0 1 0-16 0c0 5.4 8 11 8 11z" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/></symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" ry="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M16 3v4M8 3v4M3 11h18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></symbol>
   <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
-  <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.7 19.7 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.7 19.7 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72c.12 1.05.37 2.08.74 3.05a2 2 0 0 1-.45 2.11L9.91 11.09a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.11-.45c.97.37 2 .62 3.05.74A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-hospital" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" ry="2" stroke="currentColor" stroke-width="1.4" fill="none"/><path d="M8 11h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="icon-stethoscope" viewBox="0 0 24 24"><path d="M16 3v4a3 3 0 1 1-6 0V3" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M10 14a6 6 0 1 1 4 5.5" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.6" fill="none"/></symbol>
+  <symbol id="icon-lab" viewBox="0 0 24 24"><path d="M10 2h4M8 6h8l-2 6v6a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2v-6L8 6z" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
+  <symbol id="icon-pharmacy" viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="6" rx="3" ry="3" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M3.5 9h17" stroke="currentColor" stroke-width="1.3" fill="none"/></symbol>
+  <symbol id="icon-syringe" viewBox="0 0 24 24"><path d="M21 3l-6 6M14 10l-9 9-2-2 9-9" stroke="currentColor" stroke-width="1.4" fill="none"/></symbol>
   <symbol id="icon-activity" viewBox="0 0 24 24"><path d="M12 2l1.9 4.5L18.8 8l-3.9 2.8L15 16l-3-2-3 2 .9-5.2L5.2 8 10.1 6.5 12 2z" stroke="currentColor" stroke-width="0.9" fill="none" /></symbol>
-  <symbol id="icon-badge-s" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M7 20v-3a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="1.2" fill="none"/><text x="12" y="9.2" text-anchor="middle" font-size="6" fill="currentColor" font-weight="700">S</text></symbol>
-  <symbol id="icon-badge-g" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M7 20v-3a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="1.2" fill="none"/><text x="12" y="9.2" text-anchor="middle" font-size="6" fill="currentColor" font-weight="700">G</text></symbol>
+  <symbol id="icon-badge-s" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/></symbol>
+  <symbol id="icon-badge-g" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/></symbol>
 </svg>
 
 <div class="wrap">
-  <!-- Header -->
   <header>
     <div class="brand">
-      <img src="https://www.rrcharitabletrust.org/Content/adminlte/img/preload.png" alt="RR Charitable Trust logo" />
+      <img src="https://www.rrcharitabletrust.org/Content/adminlte/img/preload.png" alt="logo">
       <div>
         <div class="title">R.R. Charitable Trust</div>
         <div class="sub">Trusted community healthcare</div>
       </div>
     </div>
 
-    <div class="header-actions">
-      <div class="small muted">8591918318</div>
-      <button class="btn">Admin</button>
-      <button class="btn primary">User Login</button>
-    </div>
+    <button class="login-btn" aria-label="Login" id="loginBtn"><svg class="icon"><use href="#icon-user"></use></svg></button>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="left">
-      <div class="search-wrap" aria-label="Primary search">
-        <div class="search-row">
-          <div class="search-field" role="search">
-            <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
-            <input id="searchInput" autocomplete="off" placeholder="Search services — e.g., General OPD, Hospital" />
-            <button class="search-btn" id="searchBtn" aria-label="Search">
-              <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
-              Search
-            </button>
+      <div class="card card-search full">
+        <div class="search-wrap">
+          <div class="search-field">
+            <svg class="icon"><use href="#icon-search"></use></svg>
+            <input id="searchInput" placeholder="Search services — e.g., General OPD, Hospital" />
+            <button class="btn ghost" id="searchBtn"><svg class="icon"><use href="#icon-search"></use></svg></button>
           </div>
-        </div>
-
-        <div class="suggestions">
-          <div id="suggestList" class="suggest-list hide" role="listbox" aria-label="Search suggestions"></div>
-        </div>
-
-        <div class="chips" id="chips">
-          <div class="chip" data-service="Hospital"><div class="ico"><svg class="icon"><use href="#icon-hospital"></use></svg></div><div><div style="font-weight:700">Hospital</div><div class="muted" style="font-size:12px">हॉस्पिटल</div></div></div>
-          <div class="chip" data-service="General OPD"><div class="ico"><svg class="icon"><use href="#icon-stethoscope"></use></svg></div><div><div style="font-weight:700">General OPD</div><div class="muted" style="font-size:12px">जनरल ओपीडी</div></div></div>
-          <div class="chip" data-service="Lab Tests"><div class="ico"><svg class="icon"><use href="#icon-lab"></use></svg></div><div><div style="font-weight:700">Lab Tests</div><div class="muted" style="font-size:12px">लैब टेस्ट</div></div></div>
-          <div class="chip" data-service="Pharmacy"><div class="ico"><svg class="icon"><use href="#icon-pharmacy"></use></svg></div><div><div style="font-weight:700">Pharmacy</div><div class="muted" style="font-size:12px">फार्मेसी</div></div></div>
+          <div class="muted">Popular quick picks</div>
         </div>
       </div>
 
-      <div style="margin-top:10px">
-        <div class="upload" role="region" aria-label="Upload prescription">
-          <div class="left">
-            <div style="width:44px;height:44px;border-radius:8px;background:#f7fafc;display:grid;place-items:center">
-              <svg class="icon" aria-hidden="true"><use href="#icon-upload"></use></svg>
-            </div>
-            <div>
-              <div class="title">Upload for quick order</div>
-              <div class="sub">Prescription upload — fast processing</div>
-            </div>
+      <div style="height:10px"></div>
+
+      <div class="card upload full">
+        <div class="left">
+          <div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,#eef7ff,#f0fbff);display:grid;place-items:center">
+            <svg class="icon"><use href="#icon-calendar"></use></svg>
           </div>
           <div>
-            <button class="btn primary" id="uploadBtn">Order now</button>
+            <div class="title-strong">Book Appointment</div>
+            <div class="muted" style="font-size:13px">Upload report or record voice for faster processing</div>
+          </div>
+        </div>
+        <div>
+          <button class="btn cta book-btn" id="bookBtn"><svg class="icon"><use href="#icon-calendar"></use></svg> Book Appointment</button>
+        </div>
+      </div>
+
+      <div style="height:10px"></div>
+
+      <div class="card full">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div class="title-strong">Popular services</div>
+            <div class="muted" style="font-size:13px">Most used — quick access</div>
+          </div>
+          <div><button class="btn" id="openAllBtn">View all</button></div>
+        </div>
+
+        <div style="height:10px"></div>
+        <div class="popular-grid" id="popularGrid">
+          <div class="svc-card"><div class="svc-icon"><svg class="icon"><use href="#icon-hospital"></use></svg></div><div><div style="font-weight:700">Hospital</div><div class="muted">हॉस्पिटल</div></div></div>
+          <div class="svc-card"><div class="svc-icon"><svg class="icon"><use href="#icon-stethoscope"></use></svg></div><div><div style="font-weight:700">General OPD</div><div class="muted">जनरल ओपीडी</div></div></div>
+          <div class="svc-card"><div class="svc-icon"><svg class="icon"><use href="#icon-lab"></use></svg></div><div><div style="font-weight:700">Lab Tests</div><div class="muted">लैब टेस्ट</div></div></div>
+          <div class="svc-card"><div class="svc-icon"><svg class="icon"><use href="#icon-chat"></use></svg></div><div><div style="font-weight:700">Medical Advice</div><div class="muted">सलाह</div></div></div>
+          <div class="svc-card"><div class="svc-icon"><svg class="icon"><use href="#icon-pharmacy"></use></svg></div><div><div style="font-weight:700">Pharmacy</div><div class="muted">फार्मेसी</div></div></div>
+          <div class="svc-card"><div class="svc-icon"><svg class="icon"><use href="#icon-syringe"></use></svg></div><div><div style="font-weight:700">Vaccination</div><div class="muted">टीकाकरण</div></div></div>
+        </div>
+      </div>
+
+      <div style="height:10px"></div>
+
+      <!-- BEAUTIFIED MEMBERSHIP CARDS -->
+      <div class="members" role="region" aria-label="Memberships">
+        <!-- Silver -->
+        <div class="member-card silver" aria-labelledby="silverTitle">
+          <div class="badge-wrap" style="align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="member-badge silver" aria-hidden="true">S</div>
+              <div>
+                <div id="silverTitle" style="font-weight:900;font-size:16px">Silver Membership</div>
+                <div class="muted small">Focused discounts for routine care</div>
+              </div>
+            </div>
+            <div class="price">₹ —</div>
+          </div>
+
+          <div class="member-features" aria-hidden="false">
+            <div class="member-feat"><div class="feat-dot silver"></div><div>Lab / Pathology — up to <strong>50% छूट</strong></div></div>
+            <div class="member-feat"><div class="feat-dot silver"></div><div>X-Ray, Sonography, ECG — discounted rates</div></div>
+            <div class="member-feat"><div class="feat-dot silver"></div><div>Hospital & Pharmacy discounts</div></div>
+          </div>
+
+          <div class="member-footer">
+            <div class="member-chip">Popular</div>
+            <div class="member-cta">
+              <button class="btn mini" onclick="choose('Silver')">Learn</button>
+              <button class="btn primary" onclick="choose('Silver')">Choose</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gold -->
+        <div class="member-card gold" aria-labelledby="goldTitle">
+          <div class="badge-wrap" style="align-items:center;justify-content:space-between">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="member-badge gold" aria-hidden="true">G</div>
+              <div>
+                <div id="goldTitle" style="font-weight:900;font-size:16px">Gold Membership</div>
+                <div class="muted small">Premium — free tests & priority support</div>
+              </div>
+            </div>
+            <div class="price">₹ —</div>
+          </div>
+
+          <div class="member-features" aria-hidden="false">
+            <div class="member-feat"><div class="feat-dot gold"></div><div>Diabetes (Blood Sugar) — <strong>Free</strong></div></div>
+            <div class="member-feat"><div class="feat-dot gold"></div><div>Blood Group, Medical Certificate — Free</div></div>
+            <div class="member-feat"><div class="feat-dot gold"></div><div>Ambulance & Priority booking</div></div>
+          </div>
+
+          <div class="member-footer">
+            <div class="member-chip">Best value</div>
+            <div class="member-cta">
+              <button class="btn mini" onclick="choose('Gold')">Learn</button>
+              <button class="btn primary" onclick="choose('Gold')">Choose</button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="popular" aria-label="Popular services">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
-          <div><strong style="font-size:16px">Popular services</strong><div class="muted" style="font-size:13px">Most used — quick access</div></div>
-          <div><button class="btn link" id="openAllBtn">View all</button></div>
-        </div>
+      <div style="height:12px"></div>
 
-        <div class="popular-grid" id="popularGrid" style="margin-top:10px">
-          <div class="svc-card" data-service="Hospital"><div class="svc-icon"><svg aria-hidden="true"><use href="#icon-hospital"></use></svg></div><div><div class="svc-title">Hospital</div><div class="svc-sub">हॉस्पिटल</div></div></div>
-          <div class="svc-card" data-service="General OPD"><div class="svc-icon"><svg aria-hidden="true"><use href="#icon-stethoscope"></use></svg></div><div><div class="svc-title">General OPD</div><div class="svc-sub">जनरल ओपीडी</div></div></div>
-          <div class="svc-card" data-service="Lab Tests"><div class="svc-icon"><svg aria-hidden="true"><use href="#icon-lab"></use></svg></div><div><div class="svc-title">Lab Tests</div><div class="svc-sub">लैब टेस्ट</div></div></div>
-          <div class="svc-card" data-service="Medical Advice"><div class="svc-icon"><svg aria-hidden="true"><use href="#icon-chat"></use></svg></div><div><div class="svc-title">Medical Advice</div><div class="svc-sub">सलाह</div></div></div>
-          <div class="svc-card" data-service="Pharmacy"><div class="svc-icon"><svg aria-hidden="true"><use href="#icon-pharmacy"></use></svg></div><div><div class="svc-title">Pharmacy</div><div class="svc-sub">फार्मेसी</div></div></div>
-          <div class="svc-card" data-service="Vaccination"><div class="svc-icon"><svg aria-hidden="true"><use href="#icon-syringe"></use></svg></div><div><div class="svc-title">Vaccination</div><div class="svc-sub">टीकाकरण</div></div></div>
-        </div>
-      </div>
-
-      <section class="members" aria-label="Memberships">
-        <div class="member-card" role="region" aria-labelledby="silverTitle">
-          <div class="member-head"><div class="badge silver"><svg aria-hidden="true"><use href="#icon-badge-s"></use></svg></div><div><div id="silverTitle" style="font-weight:800">Silver Membership</div><div class="muted" style="font-size:13px">Focused discounts for routine care</div></div></div>
-          <div class="benefits" style="margin-top:10px">
-            <div class="benefit"><div class="dot silver"></div><div>Lab / Pathology — up to 50% छूट</div></div>
-            <div class="benefit"><div class="dot silver"></div><div>X-Ray, Sonography, ECG — up to 50%</div></div>
-            <div class="benefit"><div class="dot silver"></div><div>Hospital treatment & pharmacy discounts</div></div>
-          </div>
-          <div class="member-cta"><div style="font-weight:800">Silver</div><div style="margin-left:auto"><button class="member-btn silver" onclick="choose('Silver')">Choose</button></div></div>
-        </div>
-
-        <div class="member-card" role="region" aria-labelledby="goldTitle">
-          <div class="member-head"><div class="badge gold"><svg aria-hidden="true"><use href="#icon-badge-g"></use></svg></div><div><div id="goldTitle" style="font-weight:800">Gold Membership</div><div class="muted" style="font-size:13px">Premium — free tests & priority support</div></div></div>
-          <div class="benefits" style="margin-top:10px">
-            <div class="benefit"><div class="dot gold"></div><div>Diabetes (Blood Sugar) test — Free</div></div>
-            <div class="benefit"><div class="dot gold"></div><div>Blood Group, Medical Fitness certificate — Free</div></div>
-            <div class="benefit"><div class="dot gold"></div><div>Ambulance assistance & priority booking</div></div>
-          </div>
-          <div class="member-cta"><div style="font-weight:800">Gold</div><div style="margin-left:auto"><button class="member-btn gold" onclick="choose('Gold')">Choose</button></div></div>
-        </div>
-      </section>
-
-      <div class="all-panel">
-        <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="card full">
+        <div style="display:flex;justify-content:space-between;align-items:center">
           <div><strong>All services</strong><div class="muted" style="font-size:13px">Collapsed to keep homepage clean</div></div>
-          <div><button class="btn link" id="toggleAllBtn">Show all ▾</button></div>
+          <div><button class="btn" id="toggleAllBtn">Show all ▾</button></div>
         </div>
-        <div class="all-grid" id="allGrid" aria-hidden="true" style="margin-top:10px"></div>
+        <div style="margin-top:10px" id="allGrid" class="muted">(Expanded list appears here)</div>
       </div>
     </div>
 
-    <!-- RIGHT column: stacked cards to avoid overlap -->
-    <aside class="right-hero" aria-label="Right column">
-      <!-- CENTERS CARD -->
-      <div class="side-card" id="centersCard">
+    <aside class="right-hero">
+      <div class="card" id="centersCard">
         <div style="display:flex;justify-content:space-between;align-items:center">
           <div style="font-weight:800">Centers</div>
           <div class="muted" style="font-size:13px">Search nearby</div>
         </div>
-
-        <div class="centers-search">
-          <input id="centersSearch" placeholder="Search centers or area" aria-label="Search centers" />
-          <button class="btn" id="newMe">New Me</button>
+        <div style="height:8px"></div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <input id="centersSearch" placeholder="Search centers or area" style="flex:1;padding:10px;border-radius:10px;border:1px solid #eef2f6"/>
+          <button class="btn mini" id="newMe">New Me</button>
         </div>
-
-        <div class="centers-list" id="centersList" aria-live="polite"></div>
+        <div style="height:10px"></div>
+        <div id="centersList" class="centers-list muted">(Center list)</div>
       </div>
 
-      <!-- ACTIVITIES CARD -->
-      <div class="side-card" id="activityCard" aria-label="View our activities">
-        <div class="activity-head" style="align-items:flex-start">
-          <div class="activity-title">
-            <svg class="icon" aria-hidden="true"><use href="#icon-activity"></use></svg>
-            <div>
-              <div style="font-weight:800">View Our Activities</div>
-              <div class="muted" style="font-size:13px">Impact, events & community work — highlights</div>
-            </div>
+      <div class="card" id="activityCard" style="margin-top:10px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div style="font-weight:800">View Our Activities</div>
+            <div class="muted" style="font-size:13px">Impact, events & community work</div>
           </div>
-
-          <div class="activity-stats" style="margin-left:auto">
-            <div class="stat"><strong>120+</strong><span class="muted" style="font-size:13px">Events</span></div>
-            <div class="stat"><strong>5k+</strong><span class="muted" style="font-size:13px">Volunteers</span></div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <div class="muted" style="text-align:right"><div style="font-weight:800">120+</div><div style="font-size:13px">Events</div></div>
+            <div class="muted" style="text-align:right"><div style="font-weight:800">5k+</div><div style="font-size:13px">Volunteers</div></div>
           </div>
         </div>
 
-        <div class="activity-gallery" aria-hidden="false">
-          <div class="thumb">2024</div>
-          <div class="thumb">2023</div>
-          <div class="thumb">Campaign</div>
-          <div style="margin-left:auto"></div>
+        <div class="activity-gallery" aria-hidden="false" style="margin-top:10px">
+          <div class="thumb">2024</div><div class="thumb">2023</div><div class="thumb">Campaign</div>
         </div>
 
-        <div class="activity-cta">
-          <div class="muted" style="font-size:13px">See full gallery & stories</div>
-          <button class="see-btn" id="seeActivityBtn" aria-haspopup="dialog" aria-controls="activityModal">
-            See Activities <span class="pulse" aria-hidden="true"></span>
-          </button>
+        <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+          <div class="muted" style="font-size:13px">See gallery & stories</div>
+          <button class="btn cta" id="seeActivityBtn" style="padding:10px 12px;background:linear-gradient(90deg,#ff7a59,#ff4d92);">See Activities</button>
         </div>
       </div>
 
-      <!-- CONTACT CARD -->
-      <div class="side-card" id="contactCard">
+      <div class="card" id="contactCard" style="margin-top:10px">
         <div style="font-weight:800">Contact</div>
         <div class="muted" style="margin-top:8px">श्री महालक्ष्मी को. ऑप. सोसायटी, पारसिक बोगदा के पास, वाघोबा नगर, कलवा (पूर्व) ठाणे - 400605</div>
         <div style="margin-top:10px;font-weight:700">8591918318</div>
@@ -360,227 +402,107 @@
     </aside>
   </section>
 
-  <!-- modal for activities -->
-  <div id="activityBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document" aria-labelledby="activityTitle">
-      <div class="modal-header">
-        <div><strong id="activityTitle">Our Activities & Impact</strong><div class="muted" style="font-size:13px">Recent campaigns & stories</div></div>
-        <div><button class="close-btn" id="closeModalBtn" aria-label="Close activities">✕</button></div>
+  <footer style="margin-top:14px;padding-bottom:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="display:flex;gap:10px;align-items:center">
+        <img src="https://www.rrcharitabletrust.org/Content/adminlte/img/preload.png" style="height:40px;width:40px;border-radius:8px" alt="logo">
+        <div>
+          <div style="font-weight:700">R.R. Charitable Trust</div>
+          <div class="muted" style="font-size:13px">Trusted community healthcare</div>
+        </div>
       </div>
-
-      <div class="modal-grid" id="modalGrid"></div>
-
-      <div style="margin-top:12px;text-align:center">
-        <button class="btn primary" id="viewMoreActivities">View more on website</button>
-      </div>
+      <div class="muted">© R.R. Charitable Trust 2025</div>
     </div>
-  </div>
-
-  <!-- footer -->
-  <footer>
-    <div class="f-grid">
-      <div>
-        <div class="f-brand"><img src="https://www.rrcharitabletrust.org/Content/adminlte/img/preload.png" alt="logo"><div style="margin-left:8px"><strong>R.R. Charitable Trust</strong><div class="muted" style="font-size:13px">Trusted community healthcare</div></div></div>
-      </div>
-      <div class="f-col"><h4 style="margin:0 0 8px 0">Services</h4><a href="#" onclick="scrollToPopular(event)">Popular</a><br><a href="#" onclick="openAll(event)">All</a></div>
-      <div class="f-col"><h4 style="margin:0 0 8px 0">Membership</h4><a href="#" onclick="choose('Silver')">Silver</a><br><a href="#" onclick="choose('Gold')">Gold</a></div>
-    </div>
-
-    <div class="f-bottom">© R.R. Charitable Trust 2025 • Designed for clarity</div>
   </footer>
 </div>
 
+<!-- Modal for activities -->
+<div id="activityBackdrop" class="modal-backdrop" aria-hidden="true">
+  <div class="modal"><strong>Activities</strong><div class="muted" style="margin-top:8px">List of recent activities (mock)</div></div>
+</div>
+
+<!-- Bottom native-like tab bar -->
+<nav class="bottom-nav" role="navigation" aria-label="Main">
+  <button class="nav-item active" data-nav="home" aria-label="Home">
+    <div class="nav-icon"><svg class="icon"><use href="#icon-home"></use></svg></div>
+    <div>Home</div>
+    <div class="pill"></div>
+  </button>
+
+  <button class="nav-item" data-nav="services" aria-label="Services">
+    <div class="nav-icon"><svg class="icon"><use href="#icon-list"></use></svg></div>
+    <div>Services</div>
+    <div class="pill"></div>
+  </button>
+
+  <button class="nav-item" data-nav="centers" aria-label="Centers">
+    <div class="nav-icon"><svg class="icon"><use href="#icon-location"></use></svg></div>
+    <div>Centers</div>
+    <div class="pill"></div>
+  </button>
+
+  <button class="nav-item" data-nav="activity" aria-label="Activity">
+    <div class="nav-icon"><svg class="icon"><use href="#icon-activity"></use></svg></div>
+    <div>Activity</div>
+    <div class="pill"></div>
+  </button>
+
+  <button class="nav-item" data-nav="account" aria-label="Account">
+    <div class="nav-icon"><svg class="icon"><use href="#icon-user"></use></svg></div>
+    <div>Account</div>
+    <div class="pill"></div>
+  </button>
+</nav>
+
 <script>
-  /* Data and UI logic */
-  const allServices = [
-    'Hospital','General OPD','Medical Advice','Medical Help','Lab Tests','Pharmacy','Vaccination',
-    'Imaging (X-Ray)','Sonography','ECG','2D Echo','C.T. Scan','M.R.I.','Surgery','Physiotherapy',
-    'Ambulance','Dental','Mental Health','Nutrition','Medical Fitness Certificate','Blood Group test','Diabetes test'
-  ];
+  // Basic UI wiring (keeps mock behavior)
+  document.getElementById('bookBtn').addEventListener('click', ()=> {
+    alert('Open booking flow (mock) — will implement full form/modal as requested.');
+  });
 
+  document.getElementById('seeActivityBtn').addEventListener('click', ()=> {
+    const b = document.getElementById('activityBackdrop');
+    b.style.display = 'flex'; b.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  });
+  document.getElementById('activityBackdrop').addEventListener('click', (e)=> {
+    if(e.target === e.currentTarget){ e.currentTarget.style.display='none'; e.currentTarget.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  });
+
+  // bottom nav behavior
+  document.querySelectorAll('.bottom-nav .nav-item').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.bottom-nav .nav-item').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const nav = btn.dataset.nav;
+      if(nav === 'home') window.scrollTo({top:0,behavior:'smooth'});
+      if(nav === 'services') document.querySelector('.popular-grid').scrollIntoView({behavior:'smooth',block:'center'});
+      if(nav === 'centers') document.getElementById('centersCard').scrollIntoView({behavior:'smooth',block:'center'});
+      if(nav === 'activity') document.getElementById('seeActivityBtn').click();
+      if(nav === 'account') alert('Open account (mock)');
+    });
+  });
+
+  // quick populate centers (mock)
   const centers = [
-    {name:'City Medical Center',addr:'Near Main Market, Sector 5',lat:28.4595,lon:77.0266},
-    {name:'GreenCare Lab',addr:'MG Road',lat:28.4515,lon:77.0262},
-    {name:'Neighbourhood Clinic',addr:'Block A',lat:28.4630,lon:77.0350},
-    {name:'Sunrise Health',addr:'Sector 12',lat:28.4580,lon:77.0320}
+    {name:'City Medical Center',addr:'Near Main Market, Sector 5'},
+    {name:'GreenCare Lab',addr:'MG Road'},
+    {name:'Neighbourhood Clinic',addr:'Block A'},
+    {name:'Sunrise Health',addr:'Sector 12'}
   ];
-
-  const activities = [
-    {title:'Free Health Camp — July 2025', desc:'100+ patients screened; free meds distributed.', img:'Camp Jul 2025', date:'Jul 12, 2025'},
-    {title:'Blood Donation Drive', desc:'Community donors helped 50+ patients.', img:'Blood Drive', date:'May 09, 2025'},
-    {title:'Awareness Workshop', desc:'Nutrition & lifestyle session for seniors.', img:'Workshop', date:'Mar 22, 2025'},
-    {title:'Ambulance Support Launch', desc:'New vehicle added to fleet for faster response.', img:'Ambulance', date:'Jan 15, 2025'},
-    {title:'Vaccination Week', desc:'Children immunized in rural outreach.', img:'Vaccination', date:'Nov 11, 2024'},
-    {title:'Eye Checkup Camp', desc:'Complimentary eye tests & spectacles.', img:'Eye Camp', date:'Sep 02, 2024'}
-  ];
-
-  // Suggestions logic
-  const searchInput = document.getElementById('searchInput');
-  const suggestList = document.getElementById('suggestList');
-  let debounce;
-  searchInput.addEventListener('input', (e)=>{
-    const q = e.target.value.trim().toLowerCase();
-    clearTimeout(debounce);
-    if(!q){ suggestList.classList.add('hide'); return; }
-    debounce = setTimeout(()=>{
-      const matches = allServices.filter(s => s.toLowerCase().includes(q)).slice(0,8);
-      renderSuggestions(matches);
-    }, 140);
-  });
-  function renderSuggestions(list){
-    if(!list || list.length === 0){ suggestList.classList.add('hide'); return; }
-    suggestList.innerHTML = '';
-    list.forEach(item=>{
-      const node = document.createElement('div');
-      node.className = 'suggest-item';
-      node.innerHTML = `<div style="width:36px;height:36px;border-radius:8px;background:#f7fafc;display:grid;place-items:center"><svg class="icon" aria-hidden="true"><use href="#icon-hospital"></use></svg></div><div style="flex:1"><div style="font-weight:700">${item}</div><div class="muted" style="font-size:13px">Search service</div></div>`;
-      node.addEventListener('click', ()=>{ selectSuggestion(item); });
-      suggestList.appendChild(node);
-    });
-    suggestList.classList.remove('hide');
-  }
-  function selectSuggestion(text){
-    searchInput.value = text;
-    suggestList.classList.add('hide');
-    animateSearch(text);
-  }
-  document.addEventListener('click', (e)=>{
-    if(!e.target.closest('.suggestions') && !e.target.closest('.search-field')) suggestList.classList.add('hide');
-  });
-
-  // Search animation + highlight
-  const searchBtn = document.getElementById('searchBtn');
-  searchBtn.addEventListener('click', ()=> animateSearch(searchInput.value.trim()));
-  function animateSearch(query){
-    if(!query) { searchInput.focus(); return; }
-    const icon = searchBtn.querySelector('.icon');
-    if(icon) icon.style.transform = 'rotate(360deg)';
-    searchBtn.disabled = true;
-    setTimeout(()=>{
-      if(icon) icon.style.transform = 'rotate(0deg)';
-      searchBtn.disabled = false;
-      highlightAllGrid(query);
-    }, 420);
-  }
-
-  // All-grid
-  const allGrid = document.getElementById('allGrid');
-  function populateAllGrid(){ allGrid.innerHTML=''; allServices.forEach(s=>{ const d=document.createElement('div'); d.className='mini-item'; d.innerHTML=`<div style="width:34px;height:34px;border-radius:8px;background:#f7fafc;display:grid;place-items:center">${s.charAt(0)}</div><div style="flex:1"><div style="font-weight:700">${s}</div><div class="muted" style="font-size:13px">सेवा</div></div>`; d.addEventListener('click',()=>{ searchInput.value=s; animateSearch(s); }); allGrid.appendChild(d); }); }
-  populateAllGrid();
-
-  const toggleAllBtn = document.getElementById('toggleAllBtn') || document.getElementById('openAllBtn');
-  (toggleAllBtn||{addEventListener:()=>{}}).addEventListener('click', ()=>{
-    const expanded = allGrid.classList.toggle('expanded');
-    allGrid.setAttribute('aria-hidden', (!expanded).toString());
-    (toggleAllBtn || {}).innerText = expanded ? 'Show less ▴' : 'Show all ▾';
-    if(expanded) setTimeout(()=> allGrid.scrollIntoView({behavior:'smooth', block:'start'}),150);
-  });
-
-  function highlightAllGrid(q){
-    const normalized = (q||'').toLowerCase();
-    if(!normalized) return;
-    if(!allGrid.classList.contains('expanded')) { allGrid.classList.add('expanded'); (toggleAllBtn||{}).innerText='Show less ▴'; }
-    Array.from(allGrid.children).forEach(item=>{
-      const title = item.querySelector('div div').innerText.toLowerCase();
-      item.style.background = title.includes(normalized) ? '#fff8e6' : '#fff';
-    });
-    const first = Array.from(allGrid.children).find(i => i.style.background === '#fff8e6');
-    if(first) first.scrollIntoView({behavior:'smooth', block:'center'});
-  }
-
-  // Popular click
-  document.getElementById('popularGrid').addEventListener('click', (e)=>{
-    const item = e.target.closest('.svc-card');
-    if(!item) return;
-    const svc = item.dataset.service;
-    searchInput.value = svc;
-    animateSearch(svc);
-  });
-
-  // Centers
   const centersList = document.getElementById('centersList');
-  function renderCenters(filter=''){
-    centersList.innerHTML = '';
-    const q = (filter||'').toLowerCase();
-    const list = centers.filter(c => !q || (c.name + ' ' + c.addr).toLowerCase().includes(q));
-    if(list.length===0){ centersList.innerHTML = '<div class="muted" style="padding:10px">No centers found</div>'; return; }
-    list.forEach(c=>{
-      const div = document.createElement('div');
-      div.className = 'center-row';
-      div.innerHTML = `<div><div style="font-weight:700">${c.name}</div><div class="muted" style="font-size:13px">${c.addr}</div></div><div class="muted">--</div>`;
-      centersList.appendChild(div);
-    });
-  }
-  renderCenters();
-  document.getElementById('centersSearch').addEventListener('input', (e)=> renderCenters(e.target.value));
-
-  // Upload
-  document.getElementById('uploadBtn').addEventListener('click', ()=> {
-    const inp = document.createElement('input'); inp.type='file'; inp.accept='image/*,application/pdf';
-    inp.onchange = ()=> alert('File selected — integrate upload endpoint to complete flow.');
-    inp.click();
+  centers.forEach(c=>{
+    const d = document.createElement('div');
+    d.style.padding='8px 0'; d.style.borderBottom='1px solid #f5f7f8';
+    d.innerHTML = `<div style="font-weight:700">${c.name}</div><div class="muted" style="font-size:13px">${c.addr}</div>`;
+    centersList.appendChild(d);
   });
 
-  // New Me
-  document.getElementById('newMe').addEventListener('click', ()=> {
-    if(confirm('Start new member registration?')) alert('Open registration flow (integrate endpoint).');
-  });
+  // search enter
+  document.getElementById('searchInput').addEventListener('keydown', (e)=> { if(e.key === 'Enter') alert('Search: ' + e.target.value); });
 
-  // Choose membership
-  function choose(plan){ alert('You chose ' + plan + '. Integrate signup/payment flow.'); }
+  function choose(plan){ alert('You chose ' + plan + '.'); }
   window.choose = choose;
-
-  // Activities modal
-  const activityBackdrop = document.getElementById('activityBackdrop');
-  const seeBtn = document.getElementById('seeActivityBtn');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const modalGrid = document.getElementById('modalGrid');
-
-  function populateActivities(){
-    modalGrid.innerHTML = '';
-    activities.forEach(a=>{
-      const node = document.createElement('div');
-      node.className = 'act-card';
-      node.innerHTML = `<div class="act-thumb">${a.img}</div><div class="act-body"><div style="font-weight:800">${a.title}</div><div class="muted" style="font-size:13px">${a.date}</div><div style="margin-top:6px">${a.desc}</div></div>`;
-      modalGrid.appendChild(node);
-    });
-  }
-  populateActivities();
-
-  function openActivities(){
-    activityBackdrop.style.display = 'flex';
-    activityBackdrop.setAttribute('aria-hidden','false');
-    document.body.style.overflow = 'hidden';
-    closeModalBtn.focus();
-  }
-  function closeActivities(){
-    activityBackdrop.style.display = 'none';
-    activityBackdrop.setAttribute('aria-hidden','true');
-    document.body.style.overflow = '';
-  }
-  seeBtn.addEventListener('click', openActivities);
-  closeModalBtn.addEventListener('click', closeActivities);
-  activityBackdrop.addEventListener('click', (e)=>{ if(e.target === activityBackdrop) closeActivities(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && activityBackdrop.style.display === 'flex') closeActivities(); });
-
-  // Floating phone
-  const floating = document.createElement('div');
-  floating.style.position='fixed'; floating.style.right='18px'; floating.style.bottom='20px';
-  floating.style.width='56px'; floating.style.height='56px'; floating.style.borderRadius='999px';
-  floating.style.background='linear-gradient(135deg,#ff6b6b,#ff4757)'; floating.style.display='grid'; floating.style.placeItems='center';
-  floating.style.cursor='pointer'; floating.style.boxShadow='0 12px 30px rgba(12,12,12,0.18)';
-  floating.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>';
-  floating.title='Call to Book'; document.body.appendChild(floating);
-  floating.addEventListener('click', ()=> location.href='tel:8591918318');
-
-  // Keyboard search
-  searchInput.addEventListener('keydown', (e)=> { if(e.key==='Enter') animateSearch(searchInput.value.trim()); });
-
-  function scrollToPopular(e){ e.preventDefault(); document.querySelector('.popular').scrollIntoView({behavior:'smooth'}); }
-  function openAll(e){ e.preventDefault(); if(!allGrid.classList.contains('expanded')) allGrid.classList.add('expanded'); (toggleAllBtn||{}).innerText='Show less ▴'; document.getElementById('allGrid').scrollIntoView({behavior:'smooth'}); }
-  window.scrollToPopular = scrollToPopular; window.openAll = openAll;
 </script>
-
 </body>
 </html>
-
